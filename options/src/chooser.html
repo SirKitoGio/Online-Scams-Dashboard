@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboard Options</title>
+<style>
+:root{color-scheme:light}*{box-sizing:border-box;margin:0}html,body{height:100%}
+body{display:flex;flex-direction:column;font-family:system-ui,sans-serif;background:#16181c}
+nav{display:flex;gap:6px;padding:8px 10px;overflow-x:auto;flex-shrink:0}
+button{flex:1;min-width:190px;text-align:left;font:inherit;background:#23262c;color:#c9ccd2;border:0;border-radius:8px;padding:8px 12px;cursor:pointer}
+button b{display:block;color:#fff;font-size:14px}button span{font-size:12px}
+button[aria-pressed=true]{background:#fff;color:#50555e}button[aria-pressed=true] b{color:#111}
+iframe{flex:1;width:100%;border:0;background:#fff}
+</style></head><body>
+<nav>
+<button data-f="option-a-scroll-story.html"><b>A · Scroll Story</b><span>One number per screen. Presents.</span></button>
+<button data-f="option-b-front-page.html"><b>B · Front Page</b><span>Whole story on one screen. Prints.</span></button>
+</nav>
+<iframe title="Selected option" id="f"></iframe>
+<script>const PAGES=__PAGES__;</script>
+<script>
+const bs=[...document.querySelectorAll('button')],f=document.getElementById('f');
+const pick=b=>{bs.forEach(x=>x.setAttribute('aria-pressed',x===b));f.srcdoc=PAGES[b.dataset.f];f.focus()};
+bs.forEach(b=>b.onclick=()=>pick(b));pick(bs[0]);
+</script></body></html>
